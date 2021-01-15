@@ -1,16 +1,12 @@
 class Solution {
- private int thisPondSize;
+    private int thisPondSize;
 
     public int[] pondSizes(int[][] land) {
-        int[] result = new int[0];
-        if (land.length == 0) {
-            return result;
-        }
         boolean[][] visited = new boolean[land.length][land[0].length];
         List<Integer> resultList = new ArrayList<Integer>();
 
         for (int i=0;i<land.length;i++){
-            for (int j=0;j<land.length;j++){
+            for (int j=0;j<land[0].length;j++){
                 this.thisPondSize = 0;
                 this.visitAndFindPond(i,j,visited,land);
                 if(this.thisPondSize>0){
@@ -18,13 +14,11 @@ class Solution {
                 }
             }
         }
-        resultList.sort(Comparator.<Integer>naturalOrder());
-        int[] ret = new int[resultList.size()];
-        for (int i=0; i < ret.length; i++)
-        {
-            ret[i] = resultList.get(i).intValue();
-        }
-        return ret;
+
+        int[] result = resultList.stream().mapToInt(Integer::valueOf).toArray();
+        Arrays.sort(result);
+        return result;
+
     }
 
     public void visitAndFindPond(int x, int y, boolean[][] visited, int[][] land){
