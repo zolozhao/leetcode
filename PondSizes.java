@@ -1,5 +1,5 @@
 //https://leetcode-cn.com/problems/pond-sizes-lcci/
-class Solution {
+class PondSizes {
     private int thisPondSize;
 
     public int[] pondSizes(int[][] land) {
